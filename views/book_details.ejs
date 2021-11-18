@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  </body> 
+    <%- include('./partials/head') %>
+    <div class="container-fluid">
+      <div class="row">
+        <%- include('./partials/nav') %>
+          <div class="col-sm-10">
+            <% if(bookDetails){%>    
+<h1>Title: <%= bookDetails.book.title %> </h1>
+<p>Author: <%= bookDetails.book.author.name %> </p>
+<p>Summary: <%= bookDetails.book.summary %> </p>
+<p>ISBN: <%= bookDetails.book.isbn %> </p>
+<p>Genre:
+<% if(bookDetails.book.genre.length >0){%>
+<% bookDetails.book.genre.forEach(genre =>  { %>
+<a href="<%=genre.url%>" ><%=genre.name %></a>
+<% })%>
+<% }else{ %>
+  N/A
+<% } %>
+</p>
+
+  <% if(bookDetails.bookInstances.length >0){%>
+    <% bookDetails.bookInstances.forEach(i =>  { %> 
+      <hr>
+      <dl>
+        <% if(i.status==="Available"){ %> 
+          <span class="text-success"><%= i.status%></span>
+        <% } else if(i.status==="Maintenance"){ %> 
+          <span class="text-danger"><%= i.status%></span>
+        <% }else{ %> 
+          <span class="text-warning"><%= i.status%></span>
+        <% }%>
+      </a>
+        <% if(i.status!=="Available"){ %> 
+          <span> (Due: <%=i.formatted_due_back%>)</span>
+          <% }%> 
+        <p>Imprint: <%=i.imprint %></p>
+        <p>Id : <a href="<%=i.url%>"><%=i.id%></a></p>  
+           
+        
+      </dl>
+      <%})%> 
+    <% }else{ %>  
+      <p>No books to display</p>
+    <% } %> 
+  <% }else{ %>
+    <p>No book instances</p>
+  <% } %>
+  <a href=<%=bookDetails.book.url+'/delete'%> >Delete Book</a> 
+  <a href=<%=bookDetails.book.url+'/update'%> > Update Book</a>
+</div>
+</div>
+</div> 
+</body>
+</html>

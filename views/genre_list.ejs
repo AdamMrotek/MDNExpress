@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  </body> 
+    <%- include('./partials/head') %>
+    <div class="container-fluid">
+      <div class="row">
+        <%- include('./partials/nav') %>
+          <div class="col-sm-10">
+<h1><%= title %> </h1>
+<ul>
+<% if(genre_list.length >0){%>
+    <% genre_list.forEach(genre =>  { %> 
+        <li>
+        
+         <p><a href="<%=genre.url%>"><%=genre.name %>
+         </a>
+         </p>
+        
+    </li>
+    <%  })  %> 
+    <% }else{ %> 
+        <li>
+        <h2>No genres to display</h2>
+    </li>
+    <% } %> 
+</ul>
+</div>
+</div>
+</div> 
+</body>
+</html>

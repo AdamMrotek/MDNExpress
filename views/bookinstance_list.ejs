@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  </body> 
+    <%- include('./partials/head') %>
+    <div class="container-fluid">
+      <div class="row">
+        <%- include('./partials/nav') %>
+          <div class="col-sm-10">
+<h1><% title %> </h1>
+<ul>
+<% if(bookinstance_list.length >0){%>
+    <% bookinstance_list.forEach(i=>  { console.log(i.status)%> 
+        <li>
+            <p><a href="<%=i.url%>"><%=i.book.title %>:<%=i.imprint %> - 
+                <% if(i.status==="Available"){ %> 
+                    <span class="text-success"><%= i.status%></span>
+                  <% } else if(i.status==="Maintenance"){ %> 
+                    <span class="text-danger"><%= i.status%></span>
+                  <% }else{ %> 
+                    <span class="text-warning"><%= i.status%></span>
+                  <% }%>
+                </a>
+                  <% if(i.status!=="Available"){ %> 
+                    <span> (Due: <%=i.formatted_due_back%>)</span>
+                    <% }%> 
+              </p>
+        </li>
+    <%  })  %> 
+    <% }else{ %> 
+        <li>
+        <h2>There are no book copies in this library.</h2>
+    </li>
+    <% } %> 
+</ul>
+</div>
+</div>
+</div> 
+</body>
+</html>
+<!-- BookInstance.find()
+.populate('book')
+.then(results=>{
+  // Successful, so render
+  res.render('bookinstance_list', { title: 'Book Instance List', bookinstance_list: results });
+}).catch(err=>console.log) -->
