@@ -6,13 +6,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for"catalog" area of site
+//production packages
 var compression = require('compression');
+var helmet = require('helmet');
+
 var dotenv = require('dotenv')
 dotenv.config();
 
 
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGOLAB_URI;
+var mongoDB = process.env.MONGODB_URI || process.env.MONGOLAB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -24,6 +27,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 app.use(compression());
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
