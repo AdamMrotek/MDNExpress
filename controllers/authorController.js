@@ -1,5 +1,6 @@
 var Author = require('../models/author');
 var Book = require('../models/book');
+const debug = require("debug")("author")
 const { body,validationResult } = require('express-validator');
 // Display list of all Authors.
 exports.author_list = function(req, res) {
@@ -26,11 +27,11 @@ exports.author_detail = function(req, res) {
         }
     }
     getAuthor().then(results=>{
-        console.log(results.author.lifespan)
+        debug(results.author.lifespan)
         res.render("author_details", {title:"Author",authorDetails:results})    
     })
     .catch(err=>{
-        console.log(err)
+        debug(err)
         res.render("author_details",{title:"Author not found",authorDetails:null}) 
     })
 
@@ -110,8 +111,7 @@ exports.author_delete_post = function(req, res, next) {
     }
     
     getDetails().then(results=>{
-        console.log("Post delete")
-        console.log(results)
+
         if (results.authors_books.length > 0) {
             // Author has books. Render in same way as for GET route.
             res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books } );

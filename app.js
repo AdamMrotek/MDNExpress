@@ -6,8 +6,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for"catalog" area of site
+var compression = require('compression');
 var dotenv = require('dotenv')
 dotenv.config();
+
 
 var mongoose = require('mongoose');
 var mongoDB = process.env.MONGOLAB_URI;
@@ -21,7 +23,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-
+app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

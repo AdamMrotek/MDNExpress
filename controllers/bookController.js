@@ -3,8 +3,7 @@ var Author = require('../models/author');
 var Genre = require('../models/genre');
 var BookInstance = require('../models/bookinstance');
 const { body,validationResult } = require('express-validator');
-const genre = require('../models/genre');
-const book = require('../models/book');
+const debug = require("debug")("author")
 
 //var async = require('async');
 
@@ -38,7 +37,7 @@ exports.index = function(req, res) {
          res.render('index', { title: 'Local Library Home',data: results, error:null } ) 
         })
         .catch(err =>{
-            console.log("Catching Err")
+            debug("Catching Err")
             res.render('index', { title: 'Local Library Home',  error: err } )
         })
  
@@ -77,7 +76,7 @@ exports.book_list = function(req, res, next) {
       .then(list_books=>{
          
         res.render('book_list', { title: 'Book List', book_list: list_books });
-      }).catch(err=>console.log)
+      }).catch(err=>debug)
 
     // function (err, list_books) {
     // if (err) { return next(err); }
@@ -105,7 +104,7 @@ exports.book_detail = function(req, res) {
    getBookDetails().then(results=>{
         res.render("book_details",{title:"Book Details",bookDetails:results})
    }).catch(err=>{
-       console.log(err)
+       debug(err)
     res.render("book_details",{title:"Book not found",bookDetails:false})
    })
     
@@ -184,7 +183,7 @@ exports.book_create_post = [
                 
                 res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres ,errors: errors.array(), book:book}); 
             
-            }).catch(err =>console.log(err))
+            }).catch(err =>debug(err))
         }
         else {
             // Data from form is valid. Save book.
@@ -241,14 +240,12 @@ exports.book_update_post = exports.book_update_post = [
     
     // Convert the genre to an array
     (req, res, next) => {
-        console.log(req.body.genre)
         if(!(req.body.genre instanceof Array)){
             if(typeof req.body.genre==='undefined')
             req.body.genre=[];
             else
             req.body.genre=new Array(req.body.genre);
         }
-        console.log(req.body.genre)
         next();
     },
 
