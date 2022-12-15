@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
+    "devstart": "nodemon ./bin/www",
     "engines": "16.10.0"
   },
   "dependencies": {
