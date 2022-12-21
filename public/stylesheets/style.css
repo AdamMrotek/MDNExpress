@@ -1,20 +1,74 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #e0e9e1;
+
+  background-image: linear-gradient(90deg, #e7af41, #2d8079);
+}
+.main-content::after {
+  content: "";
+  height: 600px;
+  display: inline-block;
+  width: 40%;
   background-image: url(/images/bookcase.jpg);
-  background-size: 50%;
-  background-position: right center;
+  background-position: right bottom;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  background-size: contain;
+  bottom: 97px;
+  right: 60px;
+  /* z-index: 20; */
+  position: absolute;
+}
+.row {
+  width: 60%;
+}
+input.form-control {
+  border-radius: 10px;
+  border: transparent 1px solid;
 }
 
+.sidebar-nav a {
+  text-align: center;
+  color: white;
+  /* color: #00b7ff; */
+}
+.sidebar-nav li.secondary-nav-link a {
+  text-align: center;
+  color: #c36406;
+  /* color: #00b7ff; */
+}
 a {
-  color: #00b7ff;
+  color: #c36406;
 }
 
 .sidebar-nav {
-  margin-top: 20px;
-  padding: 0;
+  /* margin-top: 20px; */
+  padding: 30px;
   list-style: none;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar-nav li {
+  color: white;
+  padding: 10px 15px;
+  background-color: #c36406;
+  border-radius: 10px;
+}
+
+.sidebar-nav li.secondary-nav-link {
+  background: none;
+  border: #c36406 1px solid;
+}
+.main-content {
+  background: #e0e9e1;
+  border-radius: 30px;
+  box-shadow: #2c3a43 30px 30px;
+  padding: 30px;
+  margin: 30px 60px 30px 30px;
+  min-height: 90vh;
 }

@@ -2,9 +2,10 @@
 <html>
   <body> 
     <%- include('./partials/head') %>
-    <div class="container-fluid">
+    <div class="main-content">
+      <%- include('./partials/nav') %>
       <div class="row">
-        <%- include('./partials/nav') %>
+       
           <div class="col-sm-10">
             <% if(authorDetails){%>          
               <h1>Author: <%= authorDetails.author.name %> </h1>

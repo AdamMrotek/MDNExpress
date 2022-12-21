@@ -2,33 +2,34 @@
 <html>
   </body> 
     <%- include('./partials/head') %>
-    <div class="container-fluid">
+    <div class="main-content">
+      <%- include('./partials/nav') %>
       <div class="row">
-        <%- include('./partials/nav') %>
         <div class="col-sm-10">         
-          <h1>Author: <%= book.name %> </h1>
+          <h1>Book: <%= book.name %> </h1>
+         
 
+          <% if(books_instances.length >0){%>
             <h4>Books Instances</h4>
-
-            <% if(books_instances.length >0){%>
-              <% books_instances.forEach(i=> %> 
-                  <li>
-                      <p><a href="<%=i.url%>"><%=i.book.title %>:<%=i.imprint %> - 
-                          <% if(i.status==="Available"){ %> 
-                              <span class="text-success"><%= i.status%></span>
-                            <% } else if(i.status==="Maintenance"){ %> 
-                              <span class="text-danger"><%= i.status%></span>
-                            <% }else{ %> 
-                              <span class="text-warning"><%= i.status%></span>
-                            <% }%>
-                          </a>
-                            <% if(i.status!=="Available"){ %> 
-                              <span> (Due: <%=i.formatted_due_back%>)</span>
-                              <% }%> 
-                        </p>
-                  </li>
-              <%  })  %> 
-              </div>
+            <p>Delete these copies from the record before proceeding</p>
+            <% books_instances.forEach(i=> {%> 
+                <li>
+                    <a href="<%=i.url%>"><%=i.book.title %>:<%=i.imprint %> - 
+                        <% if(i.status==="Available"){ %> 
+                            <span class="text-success"><%= i.status%></span>
+                          <% } else if(i.status==="Maintenance"){ %> 
+                            <span class="text-danger"><%= i.status%></span>
+                          <% }else{ %> 
+                            <span class="text-warning"><%= i.status%></span>
+                          <% }%>
+                        </a>
+                          <% if(i.status!=="Available"){ %> 
+                            <span> (Due: <%=i.formatted_due_back%>)</span>
+                            <% }%> 
+                  
+                </li>
+            <%  })  %> 
+            </div>
             <% }else{ %>  
               <p>Do you really want to delete this book?</p>
               <form action="" method="post">
@@ -37,9 +38,11 @@
                   <button class="btn btn-primary" type='submit'>Delete</button>
                 </div>
               </form>
-            <% } %> 
+          <% } %> 
+          
           </div>
-      </div>
+        </div>
+   
     </div> 
   </body>
 </html>

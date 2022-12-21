@@ -2,9 +2,9 @@
 <html>
   </body> 
     <%- include('./partials/head') %>
-    <div class="container-fluid">
+    <div class="main-content">
+      <%- include('./partials/nav') %>
       <div class="row">
-        <%- include('./partials/nav') %>
           <div class="col-sm-10">
             <!-- res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres ,errors: errors.array()});  -->
             <h1><%=title%></h1>
