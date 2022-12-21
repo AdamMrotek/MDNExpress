@@ -19,13 +19,19 @@
                 <span class="text-warning"><%= bookinstance.status%></span>
               <% }%>
               <% if(bookinstance.status!=="Available"){ %> 
+            
                 <span> (Due: <%=bookinstance.formatted_due_back%>)</span>
               <% }%> 
-              
-             
+
+
+              <form action="" method="post">
+                <div class="form-group">
+                  <input type="hidden" id="bookInstanceId" class="form-control" type='hidden' name='bookInstanceId' required='true' value='<%=bookinstance._id%>' >
+                  <input type="hidden" id="bookId" class="form-control" type='hidden' name='bookid' required='true' value='<%=bookinstance.book._id%>' >
+                  <button class="btn btn-primary" type='submit'>Delete</button>
+                </div>
+              </form>
                 
-        
-          
             <% } else {%>
               <p>Instance not Found</p>
              <% } %> 
