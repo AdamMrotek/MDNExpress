@@ -1,12 +1,14 @@
-# MDNExpress
+# Local library Management
+## [Live Link -->](mdnexpress-production.up.railway.app)
 MDN Express
 ### Node.js and Express library app connected to mongoDB database, skills acquired:
 - Use of Model-View-Controller architecture, separating files based on functinality
 - Buiding schemas for databases
 - Using templating language with partials
+- Serverside form validation
 - Routing in Express 
 - Asynchronous JavaScript
-- BackEnd form validators 
+- deployment on [Railway](https://railway.app/) 
 
 ## Changes
 - rewrote temaples from "pug" to "ejs"
@@ -14,5 +16,5 @@ MDN Express
 - implemented few functions myself
 
 ## Needed
-- styling
-- deployment
+- styling (done)
+- deployment (done)
